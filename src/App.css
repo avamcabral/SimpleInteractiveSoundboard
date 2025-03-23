@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap');
+
+
+.App {
+  text-align: center;
+}
+
+.drum-pad-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.drum-pad {
+  background-color: #4c6faf;
+  color: white;
+  font-size: 2rem;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.drum-pad:hover {
+  background-color: #457fa0;
+}
+
+.drum-pad:active {
+  background-color: #8c8f8c;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.87);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Popup window */
+.popup-content {
+  font-family: 'Orbitron';
+  background: rgb(36, 35, 35);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0);
+  z-index: 1001;
+}
+
+.power-button {
+  font-family: 'Orbitron';
+  background: none;
+  text-align: center;
+  width: 80px;  /* Adjust size */
+  height: 80px; /* Ensure equal width & height */
+  border-radius: 50%;
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6); /* Glowing shadow effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px; /* Adjust for power icon size */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  margin: 0 auto;
+  outline: rgb(56, 55, 55);
+  border: none;
+}
+
+/* Hover effect */
+.power-button:hover {
+  box-shadow: 0px 0px 25px rgba(18, 219, 186, 0.8); /* Adjust for futuristic glow */
+  transform: scale(1.1); /* Slight pop effect */
+}
+
+.symbol {
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.symbol.clicked {
+  color: rgb(18, 219, 186); /* Change color to blue when clicked */
+}
