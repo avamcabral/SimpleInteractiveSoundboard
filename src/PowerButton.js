@@ -6,13 +6,13 @@ function PowerButton({symbol, onClick}) {
     const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
-    setClicked(true); // Mark the button as clicked
-    onClick(); // Execute the onClick passed from parent
+    setClicked(true); // mark the button as clicked
+    onClick(); // execute the onClick passed from parent
   };
 
     return(
     <button className='power-button' onClick={onClick}>
-        <span className={`symbol ${clicked ? 'clicked' : ''}`}>{symbol}</span>
+        <span className={`symbol ${clicked ? 'clicked' : ''}`}>{symbol}</span> {/*span for the purpose of animation*/}
     </button>
 
 );

@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import {useState} from 'react';
 import * as Tone from 'tone';
-import {animate, motion}  from 'framer-motion';
+import {animate, AnimatePresence, motion}  from 'framer-motion';
 import GradientText from './GradientText';
 import './App.css';
 import PowerButton from './PowerButton';
+import Popup from './PopupWindow';
+import LoadingDots from './LoadingCircles';
 
 const drumPads = [
   { key: 'sus', sound: "/audio/sus.mp3" },
@@ -18,7 +20,19 @@ function App() {
 
   const [isStarted, setIsStarted] = useState(false); //keeps track of whether the audio context successfully starts
 
-  const [isOpen, setIsOpen] = useState(true); //this makes sure the user triggers the audio context before anything else
+  const [isOpen, setIsOpen] = useState(true); //controls keeping the popup open
+
+  const [loadStart, setLoadStart] = useState(false); //helps the popup react (display loading dots)
+
+
+
+  const handlePopupClose = async () => {
+    setLoadStart(true);
+    console.log("loading should be set");
+    await initializeAudio(); //should wait for the audio to finish loading before closing the popup
+
+    setIsOpen(false);
+  };
 
   const initializeAudio = async () => { //async so it waits and is dependent on the context starting 
     console.log("did i get here");      //believe this is so it doesn't just try to start playback upon compiling
@@ -34,8 +48,13 @@ function App() {
       ).toDestination(); //this is to send to the speaker, and in general its sending 'to output' essentially I think
 
       setPlayers(loadedPlayers); //we now have our list of players as the extracted dictionary
-      setIsStarted(true); // and now we can set the started true
+      setIsStarted(true); // and now we can set the started true'
     }
+    useEffect(() => {
+      if (isStarted) {
+        console.log("isStarted state has been set to true");
+      }
+    }, [isStarted]);
 
   const playSound = (key) => {
     if (players) {
@@ -49,15 +68,12 @@ function App() {
     <div className="App">
       <h1>Soundboard</h1>
       {/*conditionally displays the popup to start */}
-      {!isStarted && isOpen &&(
-        <div className="popup-overlay">
-        <div className="popup-content">
-          <GradientText text = "Welcome to the Soundboard" /> {/*imported component*/}
-          <p style = {{ fontSize: "1.5em" }}> Click the power button to start.</p>
-          <PowerButton symbol = "&#x23FB;" onClick={() => {setIsOpen(false); initializeAudio();}}></PowerButton> {/*imported component */}
-        </div>
-      </div>
-      )} 
+      <AnimatePresence>
+      {isOpen &&(
+          <Popup isOpen={isOpen} onClose={handlePopupClose} loadStart={loadStart} isStarted={isStarted}/>
+
+      )}
+      </AnimatePresence> 
       
       
 

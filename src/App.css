@@ -5,15 +5,19 @@
   text-align: center;
 }
 
+/*soundboard/drumpad styling*/
+
+
 .drum-pad-container {
   display: flex;
   justify-content: space-around;
   margin-top: 50px;
+  background-color: black;
 }
 
 .drum-pad {
   background-color: #4c6faf;
-  color: white;
+  color: rgb(19, 18, 18);
   font-size: 2rem;
   padding: 20px;
   margin: 10px;
@@ -31,6 +35,8 @@
   background-color: #8c8f8c;
 }
 
+/*popup styling*/
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -44,8 +50,10 @@
   z-index: 1000;
 }
 
-/* Popup window */
+
 .popup-content {
+  display: flex;
+  flex-direction: column;
   font-family: 'Orbitron';
   background: rgb(36, 35, 35);
   padding: 20px;
@@ -53,20 +61,22 @@
   text-align: center;
   box-shadow: 0px 4px 6px rgb(0, 0, 0);
   z-index: 1001;
+  align-items: center;
+  justify-content: center;
 }
 
 .power-button {
   font-family: 'Orbitron';
   background: none;
   text-align: center;
-  width: 80px;  /* Adjust size */
-  height: 80px; /* Ensure equal width & height */
+  width: 80px; 
+  height: 80px; 
   border-radius: 50%;
-  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6); /* Glowing shadow effect */
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6); 
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px; /* Adjust for power icon size */
+  font-size: 30px; 
   cursor: pointer;
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   margin: 0 auto;
@@ -74,16 +84,34 @@
   border: none;
 }
 
-/* Hover effect */
 .power-button:hover {
-  box-shadow: 0px 0px 25px rgba(18, 219, 186, 0.8); /* Adjust for futuristic glow */
-  transform: scale(1.1); /* Slight pop effect */
+  box-shadow: 0px 0px 25px rgba(18, 219, 186, 0.8); 
+  transform: scale(1.1); 
 }
 
 .symbol {
-  transition: color 0.3s ease; /* Smooth color transition */
+  transition: color 0.3s ease; 
 }
 
 .symbol.clicked {
-  color: rgb(18, 219, 186); /* Change color to blue when clicked */
+  color: rgb(18, 219, 186); 
 }
+
+.loading-dots {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: rgb(18, 219, 186);
+  border-radius: 0.25rem;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
+  outline: rgb(56, 55, 55);
+}
+
+.loading-container {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
