@@ -34,6 +34,7 @@ function App() {
     setIsOpen(false);
   };
 
+
   const initializeAudio = async () => { //async so it waits and is dependent on the context starting 
     console.log("did i get here");      //believe this is so it doesn't just try to start playback upon compiling
       await Tone.start(); // starts the audio contexts and waits till its done
@@ -49,12 +50,30 @@ function App() {
 
       setPlayers(loadedPlayers); //we now have our list of players as the extracted dictionary
       setIsStarted(true); // and now we can set the started true'
+      setLoadStart(false);
+      await new Promise(resolve => setTimeout(resolve, 400));
     }
+
+    //checking/prompting the statechange
     useEffect(() => {
       if (isStarted) {
         console.log("isStarted state has been set to true");
       }
     }, [isStarted]);
+
+    useEffect(() => {
+      if (!loadStart) {
+        console.log("loadstart false again hopefully");
+      }
+    }, [loadStart]);
+
+    useEffect(() => {
+      if (!isOpen) {
+        console.log("isOpen state has been set to false");
+      }
+    }, [isOpen]);
+
+
 
   const playSound = (key) => {
     if (players) {
@@ -70,7 +89,7 @@ function App() {
       {/*conditionally displays the popup to start */}
       <AnimatePresence>
       {isOpen &&(
-          <Popup isOpen={isOpen} onClose={handlePopupClose} loadStart={loadStart} isStarted={isStarted}/>
+          <Popup onClose={handlePopupClose} loadStart={loadStart} isStarted={isStarted}/>
 
       )}
       </AnimatePresence> 
